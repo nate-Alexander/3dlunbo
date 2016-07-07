@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <link rel="stylesheet" href="buttons.css">
+	<script src="css3.js"></script>
+	<style>
+    body,html{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .box{
+    	width:800px;
+    	height: 350px;
+    
+    	
+    	perspective:1100px;
+        perspective-origin:bottom left 175px;
+    	position:absolute;
+        left:0;
+        top:0;
+        right:0;
+        bottom:0;
+        margin:auto;
+    }
+    .inner{
+    	width:100%;
+    	height: 87px;
+    	position: absolute;
+    	transform-style:preserve-3d;
+    	transition:all 2s ease;
+        
+    }
+    ul,li{
+    	margin:0;
+    	padding:0;
+    	list-style: none;
+    	position: absolute;
+    	border:none;
+    }
+    .inner li{
+    	width:100%;
+    	height: 100%;
+    }
+    .inner li:nth-of-type(1){
+    height:50px;
+    background:#000;
+    top:-50px;
+   transform-origin:bottom;
+    transform:rotateX(-90deg);
+    }
+    .inner li:nth-of-type(2){
+    width:50px;
+    background:#000;
+    left:-50px;
+    transform-origin:right;
+    transform:rotateY(90deg);
+    }
+    .inner li:nth-of-type(3){
+    height:50px;
+    background:#000;
+    top:87px;
+    transform-origin:top;
+    transform:rotateX(90deg);
+    }
+    .inner li:nth-of-type(4){
+    width:50px;
+    background:#000;
+    left:800px;
+    transform-origin:left;
+    transform:rotateY(-90deg);
+    }
+    .inner li:nth-of-type(5){
+   
+   
+    background:url(2.jpg)
+    }
+     .inner li:nth-of-type(6){
+    background:url(1.jpg);
+   
+    transform:translateZ(50px);
+    }
+    #btn{
+    position: absolute;
+   left:0;
+   top:0;
+
+    margin:auto;
+    }
+   .dahezi{
+    width: 1100px;
+    height: 600px;
+  
+   
+    position: absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+   }
+   
+	</style>
+</head>
+<body>
+    <section class="dahezi">
+	<div class="box">
+
+	</div>
+	<button id="btn"class="button button-3d button-action button-pill">变化</button>
+    </section>
+</body>
+<script>
+	var box=document.getElementsByClassName('box')[0];
+	var str="";
+	for(var i=0;i<4;i++){
+    str+="<ul class='inner' style='left:0;top:"+i*87+"px'><li></li><li></li><li></li><li></li><li style='background-position:0 "+(-i*87)+"px'></li><li style='background-position:0 "+(-i*87)+"px'></li></ul>"
+	}
+	box.innerHTML=str;
+	var inner=document.getElementsByClassName('inner');
+    var btn=document.getElementById('btn');
+    var angle=0;
+    btn.onclick=function(){
+    angle+=180;
+    if(angle>180){
+    	angle=0;
+    }
+    for(var i=0;i<inner.length;i++){
+    setCss3(inner[i],{transform:"rotateY("+angle+"deg)"});
+    setCss3(inner[i],{transition:'all 2s ease '+Math.random()*1.5+"s"});
+    }
+    }
+</script>
+</html>
